@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamento de Reunião</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h2>Agendamento de Reunião</h2>
+<form th:action="@{/reservas}" th:object="${reserva}" method="post">
+  <label for="sala">Sala:</label><br>
+  <select id="sala" th:field="*{sala}">
+    <option th:each="sala : ${salas}" th:value="${sala}" th:text="${sala.nome}"></option>
+  </select><br>
+  <label for="inicio">Data e Hora de Início:</label><br>
+  <input type="datetime-local" id="inicio" th:field="*{dataInicio}"><br>
+  <label for="fim">Data e Hora de Término:</label><br>
+  <input type="datetime-local" id="fim" th:field="*{dataFim}"><br><br>
+  <button type="submit">Agendar Reunião</button>
+</form>
+</body>
+</html>

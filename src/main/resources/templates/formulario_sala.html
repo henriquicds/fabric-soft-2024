@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Sala</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container form label {
+            margin-top: 10px;
+        }
+        .form-container form .mdl-textfield {
+            margin-bottom: 20px;
+        }
+        .form-container form button {
+            align-self: flex-end;
+        }
+        .form-container .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container mdl-card mdl-shadow--2dp">
+    <h2>Cadastro de Sala</h2>
+    <form th:action="@{/salas/nova}" th:object="${sala}" method="post">
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="nome" th:field="*{nome}">
+            <label class="mdl-textfield__label" for="nome">Nome</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="number" id="capacidade" th:field="*{capacidade}">
+            <label class="mdl-textfield__label" for="capacidade">Capacidade</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="localizacao" th:field="*{localizacao}">
+            <label class="mdl-textfield__label" for="localizacao">Localização</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="descricao" th:field="*{descricao}">
+            <label class="mdl-textfield__label" for="descricao">Descrição</label>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Salvar</button>
+    </form>
+    <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored back-link" href="/">Voltar</a>
+</div>
+</body>
+</html>

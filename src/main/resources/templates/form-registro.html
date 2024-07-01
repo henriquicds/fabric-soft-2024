@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuário</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        .mdl-layout {
+            align-items: center;
+            justify-content: center;
+        }
+        .mdl-layout__content {
+            padding: 24px;
+            flex: none;
+        }
+        .centered-form {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .mdl-card__actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+    <main class="mdl-layout__content">
+        <div class="mdl-card mdl-shadow--2dp centered-form">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Registro de Usuário</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <form th:action="@{/registro}" th:object="${usuario}" method="post">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="nome" th:field="*{nome}">
+                        <label class="mdl-textfield__label" for="nome">Nome</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="email" id="email" th:field="*{email}">
+                        <label class="mdl-textfield__label" for="email">Email</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="senha" th:field="*{senha}">
+                        <label class="mdl-textfield__label" for="senha">Senha</label>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Registrar</button>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" th:href="@{/login}">Já tem uma conta? Logar-se</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
