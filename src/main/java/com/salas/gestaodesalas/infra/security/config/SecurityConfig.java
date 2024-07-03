@@ -17,6 +17,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/css/**", "/js/**", "/logout", "/css/**","/registro").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/salas/nova").authenticated()
                         .requestMatchers("/salas/**").authenticated()
                         .anyRequest().authenticated()
@@ -33,6 +34,8 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
+        http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
+        http.headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()));
         return http.build();
     }
 
