@@ -43,6 +43,16 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
+    public Reserva procurar(Long id) {
+        return reservaRepository.findById(id).orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
+    }
+
+    @Override
+    public void remover(Long id) {
+        reservaRepository.deleteById(id);
+    }
+
+    @Override
     public boolean reservarSala(Long salaId, LocalDate data, LocalTime horaInicio,
                                 LocalTime horaFim, String descricao, Long usuarioId) {
         List<Reserva> reservasExistentes = reservaRepository.findByDataAndSalaId(data, salaId);

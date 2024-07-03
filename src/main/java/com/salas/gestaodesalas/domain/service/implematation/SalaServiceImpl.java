@@ -23,4 +23,14 @@ public class SalaServiceImpl implements SalaService {
     public void salvar(Sala sala) {
         salaRepository.save(sala);
     }
+
+    @Override
+    public Sala procurarPorId(Long id) {
+        return salaRepository.findById(id).orElseThrow(() -> new RuntimeException("Sala não encontrada"));
+    }
+
+    @Override
+    public void remover(Long id) {
+        salaRepository.deleteById(id);
+    }
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Reserva</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        .centered-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .mdl-card {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            background-color: #fff;
+        }
+        .mdl-textfield {
+            width: 100%;
+            margin-bottom: 16px; /* Adiciona espaço entre os campos */
+        }
+    </style>
+</head>
+<body>
+<div class="centered-container">
+    <div class="mdl-card mdl-shadow--2dp">
+        <h2>Editar Reserva</h2>
+        <form th:action="@{/reservas/editar}" method="post" th:object="${reserva}">
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{sala.id}">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="date" id="data" th:field="*{data}">
+                <label class="mdl-textfield__label" for="data">Data</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="time" id="horaInicio" th:field="*{horaInicio}">
+                <label class="mdl-textfield__label" for="horaInicio">Horário de Início</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="time" id="horaFim" th:field="*{horaFim}">
+                <label class="mdl-textfield__label" for="horaFim">Horário de Fim</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="descricao" th:field="*{descricao}">
+                <label class="mdl-textfield__label" for="descricao">Descrição</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Salvar</button>
+        </form>
+        <div style="text-align: center; margin-top: 10px;">
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="/">Voltar</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

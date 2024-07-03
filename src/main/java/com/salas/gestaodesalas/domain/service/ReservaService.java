@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ReservaService {
     void salvar(Reserva reserva);
+    Reserva procurar(Long id);
+    void remover(Long id);
     List<Reserva> listar();
     List<Reserva> getReservasPorSala(Long salaId);
 

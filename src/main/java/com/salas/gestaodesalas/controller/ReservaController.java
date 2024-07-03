@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -41,7 +40,6 @@ public class ReservaController {
 
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
             usuarioId = userService.buscarPorEmail(userDetails.getUsername()).getId();
         }
 
@@ -66,9 +64,10 @@ public class ReservaController {
     }
 
     @PostMapping
-    public String salvarReserva(@ModelAttribute Reserva reserva) {
+    public String salvarReserva(@ModelAttribute Reserva reserva, RedirectAttributes redirectAttributes) {
         reservaService.salvar(reserva);
-        return "redirect:/reservas";
+        redirectAttributes.addAttribute("salaId", reserva.getSala().getId());
+        return "redirect:/";
     }
 
     @PostMapping("/agendar")
@@ -90,6 +89,26 @@ public class ReservaController {
             model.addAttribute("mensagem", "Não foi possível agendar a reunião. Verifique os horários e tente novamente.");
         }
 
-        return mostrarPaginaAgendamento(salaId, model);
+        return "redirect:/";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editarReserva(@PathVariable Long id, Model model) {
+        Reserva reserva = reservaService.procurar(id);
+        model.addAttribute("reserva", reserva);
+        model.addAttribute("salas", salaService.listar());
+        return "editarReserva";
+    }
+
+    @PostMapping("/editar")
+    public String salvarEdicao(@ModelAttribute Reserva reserva, RedirectAttributes redirectAttributes) {
+        reservaService.salvar(reserva);
+        return "redirect:/";
+    }
+
+    @PostMapping("/excluir/{id}")
+    public String excluirReserva(@PathVariable Long id) {
+        reservaService.remover(id);
+        return "redirect:/";
     }
 }

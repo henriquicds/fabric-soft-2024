@@ -49,6 +49,11 @@
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+    .reunioes-agendadas li .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
@@ -85,11 +90,19 @@
     <h3>Reuniões Agendadas</h3>
     <ul>
       <li th:each="reserva : ${reservas}">
+
         <p th:text="'Data: ' + ${reserva.data}"></p>
         <p th:text="'Horário: ' + ${reserva.horaInicio} + ' - ' + ${reserva.horaFim}"></p>
         <p th:text="'Descrição: ' + ${reserva.descricao}"></p>
         <!-- Mostra o nome do usuário -->
         <p>Usuário: <span th:text="${reserva.usuario.nome}"></span></p>
+
+        <div class="actions">
+          <a th:href="@{/reservas/editar/{id}(id=${reserva.id})}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Editar</a>
+          <form th:action="@{/reservas/excluir/{id}(id=${reserva.id})}" method="post" style="display:inline">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Excluir</button>
+          </form>
+        </div>
       </li>
     </ul>
   </div>

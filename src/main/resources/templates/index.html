@@ -49,6 +49,10 @@
       width: 100%;
       margin: 10px 0;
     }
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
   </style>
 </head>
 <body>
@@ -76,9 +80,14 @@
                 <p th:text="'Capacidade: ' + ${sala.capacidade}"></p>
                 <p th:text="'Localização: ' + ${sala.localizacao}"></p>
               </div>
-              <div class="mdl-card__actions mdl-card--border">
+              <div class="mdl-card__actions mdl-card--border action-buttons">
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                    th:href="@{/reservas/agendar(salaId=${sala.id})}">Agendar Reunião</a>
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   th:href="@{/salas/editar/{id}(id=${sala.id})}">Editar</a>
+                <form th:action="@{/salas/excluir/{id}(id=${sala.id})}" method="post" style="display:inline">
+                  <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Excluir</button>
+                </form>
               </div>
             </div>
           </div>

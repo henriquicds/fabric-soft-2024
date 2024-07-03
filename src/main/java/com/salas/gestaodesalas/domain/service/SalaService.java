@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface SalaService {
     List<Sala> listar();
+    Sala procurarPorId(Long id);
+    void remover(Long id);
     void salvar(Sala sala);
 }
